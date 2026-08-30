@@ -1,0 +1,444 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Selects is a client gallery and proofing platform designed and built by Ethan Truong for a freelance photography business.">
+  <title>Selects | Client Gallery & Proofing</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #1C2B45;
+      --amber: #C9973E;
+      --plum: #6E2A3E;
+      --paper: #FAF6EF;
+      --slate: #5B6470;
+      --line: rgba(28,43,69,.14);
+      --white: #fffdf9;
+      --shadow: 0 24px 70px rgba(28,43,69,.12);
+      --radius: 22px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: Inter, system-ui, sans-serif;
+      line-height: 1.6;
+    }
+    a { color: inherit; }
+    .wrap { width: min(1120px, calc(100% - 40px)); margin: 0 auto; }
+
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 24px 0;
+      font-size: 13px;
+    }
+    .brand {
+      font-family: Fraunces, Georgia, serif;
+      font-size: 23px;
+      font-weight: 600;
+      text-decoration: none;
+      letter-spacing: -.02em;
+    }
+    .navlinks { display: flex; gap: 24px; align-items: center; }
+    .navlinks a { text-decoration: none; color: var(--slate); }
+    .navlinks a:hover { color: var(--ink); }
+
+    .hero {
+      padding: 86px 0 105px;
+      display: grid;
+      grid-template-columns: 1.02fr .98fr;
+      gap: 72px;
+      align-items: center;
+    }
+    .eyebrow {
+      font: 500 12px/1.2 "DM Mono", monospace;
+      text-transform: uppercase;
+      letter-spacing: .14em;
+      color: var(--plum);
+      margin-bottom: 22px;
+    }
+    h1, h2, h3 {
+      font-family: Fraunces, Georgia, serif;
+      font-weight: 500;
+      letter-spacing: -.035em;
+      line-height: 1.04;
+      margin: 0;
+    }
+    h1 { font-size: clamp(54px, 7vw, 86px); max-width: 720px; }
+    .hero p {
+      color: var(--slate);
+      max-width: 590px;
+      font-size: 18px;
+      margin: 28px 0 30px;
+    }
+    .actions { display: flex; gap: 12px; flex-wrap: wrap; }
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 0 19px;
+      border-radius: 999px;
+      border: 1px solid var(--ink);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 600;
+    }
+    .button.primary { background: var(--ink); color: var(--paper); }
+    .button.secondary { color: var(--ink); background: transparent; }
+
+    /* Product visual */
+    .product-frame {
+      position: relative;
+      background: var(--ink);
+      border-radius: 28px;
+      padding: 12px;
+      box-shadow: var(--shadow);
+      transform: rotate(1.2deg);
+    }
+    .app {
+      background: var(--white);
+      border-radius: 19px;
+      overflow: hidden;
+    }
+    .appbar {
+      height: 54px;
+      padding: 0 17px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--line);
+      font-size: 11px;
+    }
+    .appbrand { font-family: Fraunces, Georgia, serif; font-size: 18px; }
+    .price {
+      font: 500 12px "DM Mono", monospace;
+      color: var(--plum);
+    }
+    .gallery {
+      padding: 14px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 9px;
+    }
+    .photo {
+      aspect-ratio: .78;
+      border-radius: 8px;
+      position: relative;
+      overflow: hidden;
+      background:
+        linear-gradient(135deg, rgba(201,151,62,.28), transparent 45%),
+        linear-gradient(160deg, #c4a990 0%, #806b69 42%, #2f4050 100%);
+    }
+    .photo:nth-child(2) {
+      background:
+        linear-gradient(155deg, rgba(110,42,62,.1), transparent 40%),
+        linear-gradient(150deg, #d6b98e, #85716d 47%, #384758);
+    }
+    .photo:nth-child(3) {
+      background:
+        linear-gradient(135deg, rgba(28,43,69,.1), transparent 45%),
+        linear-gradient(145deg, #b8c0bc, #9a7b67 52%, #344456);
+    }
+    .photo:nth-child(4) {
+      background: linear-gradient(145deg, #d1b29b, #6e5860 48%, #283b50);
+    }
+    .photo:nth-child(5) {
+      background: linear-gradient(145deg, #b7b09b, #9c7869 48%, #3a4653);
+    }
+    .photo:nth-child(6) {
+      background: linear-gradient(145deg, #d6c1a2, #7d6870 48%, #253b4e);
+    }
+    .frame-no {
+      position: absolute;
+      bottom: 7px;
+      left: 7px;
+      color: rgba(255,255,255,.86);
+      font: 500 8px "DM Mono", monospace;
+      letter-spacing: .03em;
+    }
+    .selected {
+      position: absolute;
+      top: 7px;
+      right: 7px;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: var(--amber);
+      color: white;
+      font-size: 12px;
+    }
+
+    section { padding: 105px 0; border-top: 1px solid var(--line); }
+    .section-head { max-width: 690px; margin-bottom: 50px; }
+    .section-head h2 { font-size: clamp(38px, 5vw, 58px); }
+    .section-head p { color: var(--slate); margin-top: 18px; font-size: 17px; }
+
+    .decisions {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+    .card {
+      background: rgba(255,253,249,.66);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 27px;
+      min-height: 235px;
+    }
+    .number {
+      font: 500 11px "DM Mono", monospace;
+      color: var(--amber);
+      margin-bottom: 38px;
+    }
+    .card h3 { font-size: 27px; margin-bottom: 12px; }
+    .card p { color: var(--slate); font-size: 14px; margin: 0; }
+
+    .research {
+      display: grid;
+      grid-template-columns: .72fr 1.28fr;
+      gap: 65px;
+      align-items: start;
+    }
+    .research h2 { font-size: clamp(40px, 5vw, 60px); }
+    .research-copy p { color: var(--slate); margin: 0 0 20px; font-size: 16px; }
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+    .stat {
+      border-top: 2px solid var(--ink);
+      padding: 15px 0 20px;
+    }
+    .stat strong {
+      display: block;
+      font-family: Fraunces, Georgia, serif;
+      font-size: 43px;
+      font-weight: 500;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    .stat span { color: var(--slate); font-size: 13px; }
+
+    .case-study {
+      background: var(--ink);
+      color: var(--paper);
+      border-radius: 28px;
+      padding: 56px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 45px;
+      align-items: end;
+    }
+    .case-study .eyebrow { color: var(--amber); }
+    .case-study h2 { font-size: clamp(40px, 5vw, 60px); max-width: 700px; }
+    .case-study p { color: rgba(250,246,239,.72); max-width: 680px; margin: 20px 0 0; }
+    .case-study .button { color: var(--paper); border-color: rgba(250,246,239,.55); white-space: nowrap; }
+
+    .stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+      margin-top: 26px;
+    }
+    .tag {
+      font: 500 11px "DM Mono", monospace;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 7px 10px;
+      color: var(--slate);
+      background: rgba(255,253,249,.55);
+    }
+
+    footer {
+      padding: 35px 0 50px;
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      color: var(--slate);
+      font-size: 12px;
+    }
+    footer a { color: var(--ink); text-decoration: none; }
+
+    @media (max-width: 820px) {
+      .hero, .research { grid-template-columns: 1fr; gap: 48px; }
+      .hero { padding-top: 55px; }
+      .decisions { grid-template-columns: 1fr 1fr; }
+      .case-study { grid-template-columns: 1fr; padding: 38px; }
+    }
+    @media (max-width: 560px) {
+      .wrap { width: min(100% - 28px, 1120px); }
+      .navlinks a:not(:last-child) { display: none; }
+      .hero { padding-bottom: 75px; }
+      .decisions { grid-template-columns: 1fr; }
+      .stats { grid-template-columns: 1fr 1fr; }
+      .case-study { border-radius: 20px; }
+      footer { flex-direction: column; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .product-frame { transform: none; }
+    }
+  </style>
+</head>
+<body>
+  <header class="wrap">
+    <nav>
+      <a class="brand" href="#">Selects</a>
+      <div class="navlinks">
+        <a href="#decisions">Product decisions</a>
+        <a href="#research">Research</a>
+        <a href="#case-study">Case study</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero wrap" style="border-top:0">
+      <div>
+        <div class="eyebrow">Product design & build · 2026</div>
+        <h1>A better way to choose the photographs that matter.</h1>
+        <p>
+          Selects is a client gallery and proofing platform I designed and built
+          for my freelance photography business. I used the product as a
+          hands-on exercise in research, product judgment, UX, and shipping.
+        </p>
+        <div class="actions">
+          <a class="button primary" href="https://selects-gallery-foundation.lovable.app" target="_blank" rel="noopener">Open Selects ↗</a>
+          <a class="button secondary" href="#case-study">Read the case study</a>
+        </div>
+      </div>
+
+      <div class="product-frame" aria-label="Selects gallery interface preview">
+        <div class="app">
+          <div class="appbar">
+            <span class="appbrand">Selects</span>
+            <span class="price">$185 · 18 selected</span>
+          </div>
+          <div class="gallery">
+            <div class="photo"><span class="selected">✓</span><span class="frame-no">014/100</span></div>
+            <div class="photo"><span class="frame-no">027/100</span></div>
+            <div class="photo"><span class="selected">✓</span><span class="frame-no">031/100</span></div>
+            <div class="photo"><span class="selected">✓</span><span class="frame-no">044/100</span></div>
+            <div class="photo"><span class="frame-no">058/100</span></div>
+            <div class="photo"><span class="selected">✓</span><span class="frame-no">072/100</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="decisions">
+      <div class="wrap">
+        <div class="section-head">
+          <div class="eyebrow">Product decisions</div>
+          <h2>The interesting part was deciding what not to build.</h2>
+          <p>
+            I kept the first version focused on the moments that mattered most
+            in the photographer-client workflow, then made deliberate tradeoffs
+            around usability, security, and operational control.
+          </p>
+        </div>
+
+        <div class="decisions">
+          <article class="card">
+            <div class="number">01 · BROWSING</div>
+            <h3>Three ways to review</h3>
+            <p>Grid, swipe, and lightbox modes share one live selection state, so clients can switch interaction models without losing their place.</p>
+          </article>
+          <article class="card">
+            <div class="number">02 · PRICING</div>
+            <h3>Price while you select</h3>
+            <p>Per-shoot pricing tiers update as the selection changes, making the cost of adding images visible before finalization.</p>
+          </article>
+          <article class="card">
+            <div class="number">03 · SECURITY</div>
+            <h3>Access without accounts</h3>
+            <p>Private links and PIN verification reduce login friction while rate limiting and temporary lockouts protect the public lookup path.</p>
+          </article>
+          <article class="card">
+            <div class="number">04 · DELIVERY</div>
+            <h3>Release when ready</h3>
+            <p>A manual release control separates photographer workflow from client visibility, giving the photographer the final say over delivery.</p>
+          </article>
+          <article class="card">
+            <div class="number">05 · MEDIA</div>
+            <h3>Protect proofs upstream</h3>
+            <p>Watermarked previews are generated during upload while original files remain private, trading retroactive flexibility for a simpler proofing pipeline.</p>
+          </article>
+          <article class="card">
+            <div class="number">06 · DEVICES</div>
+            <h3>Download for the device</h3>
+            <p>Desktop clients get ZIP delivery while mobile clients use the native share sheet, reflecting real platform constraints rather than fighting them.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="research">
+      <div class="wrap research">
+        <div>
+          <div class="eyebrow">Research → prioritization → iteration</div>
+          <h2>Built with real workflows in mind.</h2>
+        </div>
+        <div class="research-copy">
+          <p>
+            I collected feedback from clients and photographers across both
+            sides of the workflow, then used that feedback to prioritize
+            improvements to photo selection and gallery management.
+          </p>
+          <p>
+            The goal was not to recreate every feature of a mature gallery
+            platform. It was to understand where friction existed, make explicit
+            product tradeoffs, and ship a focused v1.
+          </p>
+          <div class="stats">
+            <div class="stat"><strong>5</strong><span>clients interviewed</span></div>
+            <div class="stat"><strong>3</strong><span>photographers interviewed</span></div>
+            <div class="stat"><strong>3</strong><span>review modes</span></div>
+            <div class="stat"><strong>100</strong><span>photos per shoot in v1</span></div>
+          </div>
+          <div class="stack">
+            <span class="tag">Lovable</span>
+            <span class="tag">Supabase</span>
+            <span class="tag">Resend</span>
+            <span class="tag">Product design</span>
+            <span class="tag">User research</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="case-study">
+      <div class="wrap">
+        <div class="case-study">
+          <div>
+            <div class="eyebrow">Full case study</div>
+            <h2>From a photography workflow to a product.</h2>
+            <p>
+              A deeper look at the problem, research, key decisions, tradeoffs,
+              and what I would build next.
+            </p>
+          </div>
+          <a class="button" href="Product%20Case%20Study%20Selects.pdf" target="_blank" rel="noopener">View case study ↗</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="wrap">
+    <span>Selects · Ethan Truong · 2026</span>
+    <a href="https://selects-gallery-foundation.lovable.app" target="_blank" rel="noopener">Open the product ↗</a>
+  </footer>
+</body>
+</html>
