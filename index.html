@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Selects is a client gallery and shoot management platform designed and built by Ethan Truong for a freelance photography business.">
+  <meta name="description" content="Selects is a client gallery and proofing platform designed and built by Ethan Truong for a freelance photography business.">
   <title>Selects | Client Gallery & Proofing</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -290,6 +290,48 @@
       html { scroll-behavior: auto; }
       .product-frame { transform: none; }
     }
+
+
+    /* Product walkthrough */
+    .demo-intro { max-width: 780px; margin-bottom: 70px; }
+    .demo-intro h2 { font-size: clamp(42px, 5vw, 64px); }
+    .demo-intro p { color: var(--slate); margin: 20px 0 0; font-size: 17px; max-width: 700px; }
+    .journey + .journey { margin-top: 115px; padding-top: 95px; border-top: 1px solid var(--line); }
+    .journey-head { display: grid; grid-template-columns: .65fr 1.35fr; gap: 55px; align-items: end; margin-bottom: 62px; }
+    .journey-head h3 { font-size: clamp(36px, 4.5vw, 54px); }
+    .journey-head p { color: var(--slate); margin: 0; max-width: 590px; }
+    .demo-list { display: grid; gap: 88px; }
+    .demo-step { display: grid; grid-template-columns: .82fr 1.18fr; gap: 68px; align-items: center; }
+    .demo-step:nth-child(even) { grid-template-columns: 1.18fr .82fr; }
+    .demo-step:nth-child(even) .demo-copy { order: 2; }
+    .demo-step:nth-child(even) .demo-media { order: 1; }
+    .demo-kicker { font: 500 11px/1.2 "DM Mono", monospace; letter-spacing: .13em; text-transform: uppercase; color: var(--amber); margin-bottom: 18px; }
+    .demo-copy h4 { font-family: Fraunces, Georgia, serif; font-size: clamp(31px, 3.5vw, 43px); font-weight: 500; letter-spacing: -.035em; line-height: 1.05; margin: 0 0 16px; }
+    .demo-copy p { color: var(--slate); font-size: 15px; margin: 0; max-width: 460px; }
+    .demo-media { position: relative; background: var(--ink); border-radius: 24px; padding: 9px; box-shadow: 0 22px 60px rgba(28,43,69,.12); overflow: hidden; }
+    .demo-media::before { content: ""; position: absolute; inset: 0; pointer-events: none; border-radius: inherit; box-shadow: inset 0 0 0 1px rgba(255,255,255,.08); z-index: 2; }
+    .demo-video { display: block; width: 100%; aspect-ratio: 16/9; object-fit: cover; background: #111923; border-radius: 17px; }
+    .video-control { position: absolute; right: 20px; bottom: 20px; z-index: 3; width: 40px; height: 40px; border: 1px solid rgba(250,246,239,.38); border-radius: 50%; background: rgba(28,43,69,.82); color: var(--paper); display: grid; place-items: center; cursor: pointer; font-size: 14px; backdrop-filter: blur(8px); }
+    .video-control:hover { background: var(--ink); }
+    .video-control:focus-visible { outline: 2px solid var(--amber); outline-offset: 3px; }
+    .journey-marker { color: var(--plum); }
+
+    @media (max-width: 820px) {
+      .journey-head { grid-template-columns: 1fr; gap: 16px; }
+      .demo-list { gap: 70px; }
+      .demo-step, .demo-step:nth-child(even) { grid-template-columns: 1fr; gap: 30px; }
+      .demo-step:nth-child(even) .demo-copy, .demo-step:nth-child(even) .demo-media { order: initial; }
+      .demo-copy p { max-width: 650px; }
+      .journey + .journey { margin-top: 90px; padding-top: 75px; }
+    }
+    @media (max-width: 560px) {
+      .demo-intro { margin-bottom: 55px; }
+      .demo-list { gap: 60px; }
+      .demo-media { border-radius: 18px; padding: 6px; }
+      .demo-video { border-radius: 13px; }
+      .video-control { right: 14px; bottom: 14px; width: 38px; height: 38px; }
+    }
+
   </style>
 </head>
 <body>
@@ -298,6 +340,7 @@
       <a class="brand" href="#">Selects</a>
       <div class="navlinks">
         <a href="#decisions">Product decisions</a>
+        <a href="#demo">Demo</a>
         <a href="#research">Research</a>
         <a href="#case-study">Case study</a>
       </div>
@@ -307,7 +350,7 @@
   <main>
     <section class="hero wrap" style="border-top:0">
       <div>
-        <div class="eyebrow">Product design & build · 2026 · Test</div>
+        <div class="eyebrow">Product design & build · 2026</div>
         <h1>A better way to choose the photographs that matter.</h1>
         <p>
           Selects is a client gallery and proofing platform I designed and built
@@ -385,6 +428,168 @@
       </div>
     </section>
 
+
+
+    <section id="demo">
+      <div class="wrap">
+        <div class="demo-intro">
+          <div class="eyebrow">Product walkthrough</div>
+          <h2>Two sides of the same workflow.</h2>
+          <p>Selects connects the client selection experience with the photographer workflow, from initial gallery access through final delivery.</p>
+        </div>
+
+        <div class="journey">
+          <div class="journey-head">
+            <div class="eyebrow journey-marker">01 · Client experience</div>
+            <div>
+              <h3>From opening the gallery to receiving the final photos.</h3>
+              <p>The client flow is designed to reduce friction at each step while making selection, pricing, and delivery clear.</p>
+            </div>
+          </div>
+
+          <div class="demo-list">
+            <article class="demo-step">
+              <div class="demo-copy">
+                <div class="demo-kicker">01 · Client</div>
+                <h4>Access your gallery your way.</h4>
+                <p>Clients can enter through a private link or find their gallery using a name and PIN, preserving privacy without requiring an account.</p>
+              </div>
+              <div class="demo-media">
+                <video class="demo-video" muted loop playsinline preload="metadata" aria-label="Client gallery access demo">
+                  <source src="client-access.mp4" type="video/mp4">
+                </video>
+                <button class="video-control" type="button" aria-label="Pause video">Ⅱ</button>
+              </div>
+            </article>
+
+            <article class="demo-step">
+              <div class="demo-copy">
+                <div class="demo-kicker">02 · Client</div>
+                <h4>Review photos your way.</h4>
+                <p>Grid, swipe, and full-screen views support different browsing behaviors while maintaining one shared selection state across the gallery.</p>
+              </div>
+              <div class="demo-media">
+                <video class="demo-video" muted loop playsinline preload="metadata" aria-label="Three photo selection modes demo">
+                  <source src="client-select.mp4" type="video/mp4">
+                </video>
+                <button class="video-control" type="button" aria-label="Pause video">Ⅱ</button>
+              </div>
+            </article>
+
+            <article class="demo-step">
+              <div class="demo-copy">
+                <div class="demo-kicker">03 · Client</div>
+                <h4>Know what you're spending.</h4>
+                <p>Pricing updates as selections change, so clients can understand the cost of adding photos before they finalize and submit their choices.</p>
+              </div>
+              <div class="demo-media">
+                <video class="demo-video" muted loop playsinline preload="metadata" aria-label="Dynamic pricing and selection submission demo">
+                  <source src="client-pricing-submit.mp4" type="video/mp4">
+                </video>
+                <button class="video-control" type="button" aria-label="Pause video">Ⅱ</button>
+              </div>
+            </article>
+
+            <article class="demo-step">
+              <div class="demo-copy">
+                <div class="demo-kicker">04 · Client</div>
+                <h4>Review and download your finals.</h4>
+                <p>After the photographer releases the finished gallery, clients can review their final selection and download the delivered files from the same experience.</p>
+              </div>
+              <div class="demo-media">
+                <video class="demo-video" muted loop playsinline preload="metadata" aria-label="Final selection review and download demo">
+                  <source src="client-review-download.mp4" type="video/mp4">
+                </video>
+                <button class="video-control" type="button" aria-label="Pause video">Ⅱ</button>
+              </div>
+            </article>
+          </div>
+        </div>
+
+        <div class="journey">
+          <div class="journey-head">
+            <div class="eyebrow journey-marker">02 · Photographer experience</div>
+            <div>
+              <h3>Behind every client gallery is a controlled workflow.</h3>
+              <p>The photographer side keeps shoots organized while preserving control over pricing, proof protection, and final delivery.</p>
+            </div>
+          </div>
+
+          <div class="demo-list">
+            <article class="demo-step">
+              <div class="demo-copy">
+                <div class="demo-kicker">01 · Photographer</div>
+                <h4>Keep your workspace private.</h4>
+                <p>Photographer tools sit behind authenticated access, separating the operational dashboard from the lightweight client experience.</p>
+              </div>
+              <div class="demo-media">
+                <video class="demo-video" muted loop playsinline preload="metadata" aria-label="Photographer login demo">
+                  <source src="photographer-login.mp4" type="video/mp4">
+                </video>
+                <button class="video-control" type="button" aria-label="Pause video">Ⅱ</button>
+              </div>
+            </article>
+
+            <article class="demo-step">
+              <div class="demo-copy">
+                <div class="demo-kicker">02 · Photographer</div>
+                <h4>Set pricing for each shoot.</h4>
+                <p>Each gallery can reflect its own included-photo count and pricing structure, supporting different shoots without hard-coding one commercial model.</p>
+              </div>
+              <div class="demo-media">
+                <video class="demo-video" muted loop playsinline preload="metadata" aria-label="Shoot pricing customization demo">
+                  <source src="photographer-pricing.mp4" type="video/mp4">
+                </video>
+                <button class="video-control" type="button" aria-label="Pause video">Ⅱ</button>
+              </div>
+            </article>
+
+            <article class="demo-step">
+              <div class="demo-copy">
+                <div class="demo-kicker">03 · Photographer</div>
+                <h4>Upload and protect your proofs.</h4>
+                <p>Upload creates protected client previews while keeping original files private, building proof protection into the workflow before a gallery is shared.</p>
+              </div>
+              <div class="demo-media">
+                <video class="demo-video" muted loop playsinline preload="metadata" aria-label="Photo upload and gallery protection demo">
+                  <source src="photographer-upload-secure.mp4" type="video/mp4">
+                </video>
+                <button class="video-control" type="button" aria-label="Pause video">Ⅱ</button>
+              </div>
+            </article>
+
+            <article class="demo-step">
+              <div class="demo-copy">
+                <div class="demo-kicker">04 · Photographer</div>
+                <h4>Control when finals go live.</h4>
+                <p>A manual release step separates client finalization from delivery, giving the photographer time to finish the work before full-resolution files become available.</p>
+              </div>
+              <div class="demo-media">
+                <video class="demo-video" muted loop playsinline preload="metadata" aria-label="Release final photos to client demo">
+                  <source src="photographer-release.mp4" type="video/mp4">
+                </video>
+                <button class="video-control" type="button" aria-label="Pause video">Ⅱ</button>
+              </div>
+            </article>
+
+            <article class="demo-step">
+              <div class="demo-copy">
+                <div class="demo-kicker">05 · Photographer</div>
+                <h4>Manage every shoot in one place.</h4>
+                <p>The dashboard provides a single view of active shoots and their status, turning the gallery from a one-off client page into a repeatable operating workflow.</p>
+              </div>
+              <div class="demo-media">
+                <video class="demo-video" muted loop playsinline preload="metadata" aria-label="Shoot management dashboard demo">
+                  <source src="photographer-manage.mp4" type="video/mp4">
+                </video>
+                <button class="video-control" type="button" aria-label="Pause video">Ⅱ</button>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section id="research">
       <div class="wrap research">
         <div>
@@ -440,5 +645,47 @@
     <span>Selects · Ethan Truong · 2026</span>
     <a href="https://selects-gallery-foundation.lovable.app" target="_blank" rel="noopener">Open the product ↗</a>
   </footer>
+
+  <script>
+    const demoVideos = document.querySelectorAll('.demo-video');
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    function setControl(video, isPlaying) {
+      const button = video.parentElement.querySelector('.video-control');
+      button.textContent = isPlaying ? 'Ⅱ' : '▶';
+      button.setAttribute('aria-label', isPlaying ? 'Pause video' : 'Play video');
+    }
+
+    demoVideos.forEach((video) => {
+      const button = video.parentElement.querySelector('.video-control');
+      button.addEventListener('click', () => {
+        if (video.paused) {
+          video.play();
+          setControl(video, true);
+        } else {
+          video.pause();
+          setControl(video, false);
+        }
+      });
+    });
+
+    if (!reduceMotion && 'IntersectionObserver' in window) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          const video = entry.target;
+          if (entry.isIntersecting && entry.intersectionRatio >= 0.55) {
+            video.play().then(() => setControl(video, true)).catch(() => setControl(video, false));
+          } else {
+            video.pause();
+            setControl(video, false);
+          }
+        });
+      }, { threshold: [0, .55, 1] });
+      demoVideos.forEach((video) => observer.observe(video));
+    } else {
+      demoVideos.forEach((video) => setControl(video, false));
+    }
+  </script>
+
 </body>
 </html>
